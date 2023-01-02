@@ -3,8 +3,8 @@
 
 # class for checking if nginx is alive
 class Nginxcheck
-  require_relative './Error-handler'
-  require_relative './Logman'
+  require_relative '../../classes/handlers/Error-handler'
+  require_relative '../../classes/system/Logman'
 
   def initialize
     if system('systemctl', 'is-active', '--quiet', 'nginx')
