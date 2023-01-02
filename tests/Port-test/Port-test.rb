@@ -60,8 +60,10 @@ class PortCheck
     end
   end
 
-  def output_portcheck_results
-    p 'outputting'
+  def output_portcheck_results(result)
+    Logman.log_to_stdout('info', result.to_s)
+    Logman.log_to_file('info', result.to_s)
+    @logger_stdout.info(result.to_s) | File.write('../../classes/system/Logman/portcheck_results.txt', mode: 'a')
   end
 
   def setup_dragon_gather_system
@@ -76,7 +78,7 @@ class PortCheck
     if @portchres == sysports.to_s
       Directories.setup_check('port')
       Directories.check
-      output_portcheck_results
+      output_portcheck_results('Success!')
     else
       port_error_handler(1)
     end
