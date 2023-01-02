@@ -3,7 +3,7 @@
 
 # Method for handling errors
 class Error_handler
-  require_relative './Logman'
+  require_relative '../system/Logman'
 
   def initialize(severity, message)
     Logman.log_to_file(severity, message)
