@@ -2,28 +2,39 @@
 # frozen_string_literal: true
 
 # class for checking ports
-class Portch
+class Port_check
   require_relative './Nginx-check'
-  require_relative './Port-check'
+  require_relative './Directory-manager'
+  require_relative './Error-handler'
+  require_relative './Logman'
+
   def initialize
-    $instdir = '/etc/Pixelated-Studios/NodeChecker'
-    $uuid = `cat /etc/uuid`.chomp
+    @@instdir = '/etc/Pixelated-Studios/NodeChecker'
+    @@uuid = `cat /etc/uuid`.chomp
   end
 
   def machine_check
     puts 'Detecting Machine!'
-    case $uuid
-    when 'm95jnv_n5T3bmc8kmSiFSDigFTZ5UWHSkZcpWdnFdtgdkoGEvw7F7CdCK8GnrAD2'
-      $nodenm = 'dragon'
-      puts 'Detected Dragon!'
-    when 'rCGWs2lYYrEVdD6JjaXS12bMxJf_z8KefCcoIQ4wNmRPXpgOn7HcnS_i5WnYW43A'
-      $nodenm = 'gemini'
-      puts 'Detected Gemini!'
-    when 'wDdG98AvHFB7X1fPIUOlSlMQCLZxm3sG62SrQ1O6ZfeOrzcmYMJNBbU15DJM9WQ6'
-      $nodenm = 'shuttle'
-      puts 'Detected Shuttle!'
+    case @@uuid
+    when 'm95jnv_n5T3bmc8kmSiFSDigFTZ5UWHSkZcpWdnFdtgdkoGEvw7F7CdCK8GnrAD2'; @@nodenm = 'dragon'
+                                                                             puts 'Detected Dragon!'
+    when 'rCGWs2lYYrEVdD6JjaXS12bMxJf_z8KefCcoIQ4wNmRPXpgOn7HcnS_i5WnYW43A'; @@nodenm = 'gemini'
+                                                                             puts 'Detected Gemini!'
+    when 'wDdG98AvHFB7X1fPIUOlSlMQCLZxm3sG62SrQ1O6ZfeOrzcmYMJNBbU15DJM9WQ6'; @@nodenm = 'shuttle'
+                                                                             puts 'Detected Shuttle!'
     else
       Error_handler.new('detecting node!', 'Error Code: 303')
+    end
+  end
+
+  def port_error_handler(port_type)
+    case port_type
+    when 1
+      Error_handler("executing #{$nodenm} System Port Scan!", 'Error Code: 764')
+    when 2
+      Error_handler("executing #{$nodenm} Games Port Scan!", 'Error Code: 765')
+    else
+      Error_handler('parsing an error!', 'Contact Veth/Connor, tell him you got an Error Code 1')
     end
   end
 
@@ -34,14 +45,7 @@ class Portch
     when 2
       dragon_gather_games($nodenm)
     else
-      case port_type
-      when 1
-        error('executing Dragon System Port Scan!', 'Error Code: 764')
-      when 2
-        error('executing Dragon Games Port Scan!', 'Error Code: 765')
-      else
-        error('parsing an error!', 'Contact Veth/Connor, tell him you got an Error Code 1')
-      end
+      port_error_handler(port_type)
     end
   end
 
@@ -52,32 +56,18 @@ class Portch
     when 2
       gemini_gather_games($nodenm)
     else
-      case port_type
-      when 1
-        error('executing Gemini System Port Scan!', 'Error Code: 764')
-      when 2
-        error('executing Gemini Games Port Scan!', 'Error Code: 765')
-      else
-        error('parsing an error!', 'Contact Veth/Connor, tell him you got an Error Code 1')
-      end
+      port_error_handler(port_type)
     end
   end
 
   def port_type_shuttle(port_type)
     case port_type
     when 1
-      Portch.shuttle_gather_system($nodenm)
+      Port_check.shuttle_gather_system($nodenm)
     when 2
-      Portch.shuttle_gather_games($nodenm)
+      Port_check.shuttle_gather_games($nodenm)
     else
-      case port_type
-      when 1
-        error('executing Shuttle System Port Scan!', 'Error Code: 764')
-      when 2
-        error('executing Shuttle Games Port Scan!', 'Error Code: 765')
-      else
-        error('parsing an error!', 'Contact Veth/Connor, tell him you got an Error Code 1')
-      end
+      port_error_handler(port_type)
     end
   end
 
@@ -119,11 +109,11 @@ class Portch
     sysports1.each do |sysports|
       portchres = `ufw status numbered | grep -o '#{sysports}'`
       if portchres == "#{sysports}"
-        Portch.dir_check
-        Portch.output
+        Port_check.dir_check
+        Port_check.output
       else
-        Portch.error("Gathering and Testing #{node_name} System Ports",
-                     'Program ran into a problem determining if ports are open! Error Code 926')
+        Port_check.error("Gathering and Testing #{node_name} System Ports",
+                         'Program ran into a problem determining if ports are open! Error Code 926')
       end
     end
   end
@@ -133,11 +123,11 @@ class Portch
     gmports1.each do |gmports|
       gmportchres = `ufw status numbered | grep -o '#{gmports}'`
       if gmportchres == "#{gmports}"
-        Portch.dir_check
-        Portch.output
+        Port_check.dir_check
+        Port_check.output
       else
-        Portch.error("Gathering and Testing #{node_name} System Ports",
-                     'Program ran into a problem determining if ports are open! Error Code 927')
+        Port_check.error("Gathering and Testing #{node_name} System Ports",
+                         'Program ran into a problem determining if ports are open! Error Code 927')
       end
     end
   end
@@ -147,11 +137,11 @@ class Portch
     sysports1.each do |sysports|
       portchres = `ufw status numbered | grep -o '#{sysports}'`
       if portchres == "#{sysports}"
-        Portch.dir_check
-        Portch.output
+        Port_check.dir_check
+        Port_check.output
       else
-        Portch.error("Gathering and Testing #{node_name} System Ports",
-                     'Program ran into a problem determining if ports are open! Error Code 926')
+        Port_check.error("Gathering and Testing #{node_name} System Ports",
+                         'Program ran into a problem determining if ports are open! Error Code 926')
       end
     end
   end
@@ -161,11 +151,11 @@ class Portch
     gmports1.each do |gmports|
       gmportchres = `ufw status numbered | grep -o '#{gmports}'`
       if gmportchres == "#{gmports}"
-        Portch.dir_check
-        Portch.output
+        Port_check.dir_check
+        Port_check.output
       else
-        Portch.error("Gathering and Testing #{node_name} System Ports",
-                     'Program ran into a problem determining if ports are open! Error Code 927')
+        Port_check.error("Gathering and Testing #{node_name} System Ports",
+                         'Program ran into a problem determining if ports are open! Error Code 927')
       end
     end
   end
@@ -175,11 +165,11 @@ class Portch
     sysports1.each do |sysports|
       portchres = `ufw status numbered | grep -o '#{sysports}'`
       if portchres == "#{sysports}"
-        Portch.dir_check
-        Portch.output
+        Port_check.dir_check
+        Port_check.output
       else
-        Portch.error("Gathering and Testing #{node_name} System Ports",
-                     'Program ran into a problem determining if ports are open! Error Code 926')
+        Port_check.error("Gathering and Testing #{node_name} System Ports",
+                         'Program ran into a problem determining if ports are open! Error Code 926')
       end
     end
   end
@@ -189,11 +179,11 @@ class Portch
     gmports1.each do |gmports|
       gmportchres = `ufw status numbered | grep -o '#{gmports}'`
       if gmportchres == "#{gmports}"
-        Portch.dir_check
-        Portch.output
+        Port_check.dir_check
+        Port_check.output
       else
-        Portch.error("Gathering and Testing #{node_name} System Ports",
-                     'Program ran into a problem determining if ports are open! Error Code 927')
+        Port_check.error("Gathering and Testing #{node_name} System Ports",
+                         'Program ran into a problem determining if ports are open! Error Code 927')
       end
     end
   end

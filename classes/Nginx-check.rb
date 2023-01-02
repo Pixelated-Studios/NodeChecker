@@ -2,7 +2,11 @@
 # frozen_string_literal: true
 
 # class for checking if nginx is alive
-class Nginxch
+class Nginxcheck
+  require_relative './Error-handler'
+  require_relative './Directory-manager'
+  require_relative './Logman'
+
   def initialize
     if system('systemctl', 'is-active', '--quiet', 'nginx')
       puts 'Nginx Running!'
