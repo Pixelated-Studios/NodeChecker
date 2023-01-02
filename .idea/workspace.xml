@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="remove old checker file">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/Machine-check.rb" afterDir="false" />
+    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Make Port-check use Logman and DRY up the code a bit">
+      <change afterPath="$PROJECT_DIR$/.idea/NodeChecker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NodeChecker.rb" beforeDir="false" afterPath="$PROJECT_DIR$/NodeChecker.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checker.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Error-handler.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Error-handler.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Nginx-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Nginx-check.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Port-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Port-check.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/errorhandler.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Directory-manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/managers/Directory-manager.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Error-handler.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/handlers/Error-handler.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Logman.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/system/Logman/Logman.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Machine-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/system/util/Machine-UUID-check.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Nginx-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Nginx-test/Nginx-test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Port-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Port-test/Port-test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +45,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/vetheon/RubymineProjects/NodeChecker",
     "node.js.detected.package.eslint": "true",
@@ -61,6 +65,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/classes" />
+      <recent name="$PROJECT_DIR$/tests/Nginx-test" />
+      <recent name="$PROJECT_DIR$/tests/Port-test" />
+      <recent name="$PROJECT_DIR$/system/util" />
+      <recent name="$PROJECT_DIR$/system/Logman" />
     </key>
   </component>
   <component name="RunManager">
@@ -234,7 +242,8 @@
       <workItem from="1672537147812" duration="735000" />
       <workItem from="1672596146406" duration="602000" />
       <workItem from="1672596859582" duration="52000" />
-      <workItem from="1672611193376" duration="8053000" />
+      <workItem from="1672611193376" duration="8244000" />
+      <workItem from="1672686834334" duration="1276000" />
     </task>
     <task id="LOCAL-00001" summary="remove old checker file">
       <created>1672619974818</created>
@@ -243,7 +252,56 @@
       <option name="project" value="LOCAL" />
       <updated>1672619974818</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="remove old errorhandler file">
+      <created>1672619992812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672619992812</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add workspace files">
+      <created>1672620012053</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672620012053</updated>
+    </task>
+    <task id="LOCAL-00004" summary="put machine UUID checker into it's own class">
+      <created>1672620034866</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672620034866</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Make the Error-handler use Logman instead of printing to console manually">
+      <created>1672620069054</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672620069054</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Make the Nginx-checker use Logman">
+      <created>1672620094124</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672620094124</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Make NodeChecker use Logman">
+      <created>1672620120666</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1672620120666</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Make Port-check use Logman and DRY up the code a bit">
+      <created>1672620151958</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1672620151958</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +310,13 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="remove old checker file" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove old checker file" />
+    <MESSAGE value="remove old errorhandler file" />
+    <MESSAGE value="add workspace files" />
+    <MESSAGE value="put machine UUID checker into it's own class" />
+    <MESSAGE value="Make the Error-handler use Logman instead of printing to console manually" />
+    <MESSAGE value="Make the Nginx-checker use Logman" />
+    <MESSAGE value="Make NodeChecker use Logman" />
+    <MESSAGE value="Make Port-check use Logman and DRY up the code a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make Port-check use Logman and DRY up the code a bit" />
   </component>
 </project>
