@@ -3,10 +3,10 @@
 
 # class for managing directories
 class Directories
-  require_relative './Port-check'
-  require_relative './Nginx-check'
-  require_relative './Error-handler'
-  require_relative './Logman'
+  require_relative '../../tests/Port-test'
+  require_relative '../../tests/Nginx-test'
+  require_relative '../handlers/Error-handler'
+  require_relative '../system/Logman/Logman'
 
   def initialize(type)
     @@instdir = '/etc/Pixelated-Studios/NodeChecker'
