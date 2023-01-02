@@ -11,7 +11,7 @@ class PortCheck
   attr_accessor :install_dir
 
   def initialize
-    @instdir = '/etc/Pixelated-Studios/NodeChecker'
+    Directories.new
     MachineChecker.new
   end
 
@@ -74,10 +74,9 @@ class PortCheck
 
   def dragon_gather_system(sysports)
     if @portchres == sysports.to_s
-      Directories.new
       Directories.setup_check('port')
       Directories.check
-      PortCheck.output
+      output_portcheck_results
     else
       port_error_handler(1)
     end
@@ -94,10 +93,9 @@ end
 
 def dragon_gather_games(gmports)
   if @gmportchres == gmports.to_s
-    Directories.new
     Directories.setup_check('port')
     Directories.check
-    PortCheck.output
+    output_portcheck_results
   else
     port_error_handler(2)
   end
@@ -113,7 +111,6 @@ end
 
 def gemini_gather_system(sysports)
   if @portchres == sysports.to_s
-    Directories.new
     Directories.setup_check('port')
     Directories.check
     output_portcheck_results
@@ -132,10 +129,9 @@ end
 
 def gemini_gather_games(gmports)
   if @gmportchres == gmports.to_s
-    Directories.new
     Directories.setup_check('port')
     Directories.check
-    PortCheck.output
+    output_portcheck_results
   else
     port_error_handler(2)
   end
@@ -151,10 +147,9 @@ end
 
 def shuttle_gather_system(sysports)
   if @portchres == sysports.to_s
-    Directories.new
     Directories.setup_check('port')
     Directories.check
-    PortCheck.output
+    output_portcheck_results
   else
     port_error_handler(1)
   end
@@ -170,12 +165,10 @@ end
 
 def shuttle_gather_games(gmports)
   if @gmportchres == gmports.to_s
-    Directories.new
     Directories.setup_check('port')
     Directories.check
-    PortCheck.output
+    output_portcheck_results
   else
-    PortCheck.error("Gathering and Testing #{@nodenm} System Ports",
-                    'Program ran into a problem determining if ports are open! Error Code 927')
+    port_error_handler(2)
   end
 end
