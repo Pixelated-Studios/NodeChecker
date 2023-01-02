@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 class MachineChecker
-  require_relative './Error-handler'
-  require_relative './Logman'
+  require_relative '../../handlers/Error-handler'
+  require_relative '../../system/Logman/Logman'
   attr_accessor :nodenm
 
   def initialize
