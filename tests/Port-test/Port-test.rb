@@ -2,13 +2,13 @@
 # frozen_string_literal: true
 
 # class for checking ports
-class Port_check
+class PortCheck
   require_relative '../Nginx-test'
   require_relative '../../classes/managers/Directory-manager'
   require_relative '../../classes/handlers/Error-handler'
   require_relative '../../classes/system/util/Machine-UUID-check'
   require_relative '../../classes/system/Logman/Logman'
-  attr_accessor :instdir
+  attr_accessor :install_dir
 
   def initialize
     @instdir = '/etc/Pixelated-Studios/NodeChecker'
@@ -18,21 +18,21 @@ class Port_check
   def port_error_handler(port_type)
     case port_type
     when 1
-      Error_handler.new('fatal', "Failure executing #{@nodenm} System Ports Scan!")
+      ErrorHandler.new('fatal', "Failure executing #{@nodenm} System Ports Scan!")
     when 2
-      Error_handler.new('fatal', "Failure executing #{@nodenm} Games Ports Scan!")
+      ErrorHandler.new('fatal', "Failure executing #{@nodenm} Games Ports Scan!")
     else
-      Error_handler.new('fatal',
-                        'There was an error parsing an error! Contact Veth/Connor, tell him you got an Error Code 1')
+      ErrorHandler.new('fatal',
+                       'There was an error parsing an error! Contact Veth/Connor, tell him you got an Error Code 1')
     end
   end
 
   def port_type_dragon(port_type)
     case port_type
     when 1
-      dragon_gather_system(@nodenm)
+      setup_dragon_gather_system
     when 2
-      dragon_gather_games(@nodenm)
+      setup_dragon_gather_games
     else
       port_error_handler(port_type)
     end
@@ -41,9 +41,9 @@ class Port_check
   def port_type_gemini(port_type)
     case port_type
     when 1
-      gemini_gather_system(@nodenm)
+      setup_gemini_gather_system
     when 2
-      gemini_gather_games(@nodenm)
+      setup_gemini_gather_games
     else
       port_error_handler(port_type)
     end
@@ -52,99 +52,130 @@ class Port_check
   def port_type_shuttle(port_type)
     case port_type
     when 1
-      Port_check.shuttle_gather_system(@nodenm)
+      setup_shuttle_gather_system
     when 2
-      Port_check.shuttle_gather_games(@nodenm)
+      setup_shuttle_gather_games
     else
       port_error_handler(port_type)
     end
   end
 
-  def output
+  def output_portcheck_results
     p 'outputting'
   end
 
-  def dragon_gather_system(node_name)
+  def setup_dragon_gather_system
     sysports1 = [2022, 8080, 30_101, 30_456, 8125, 3306]
     sysports1.each do |sysports|
-      portchres = `ufw status numbered | grep -o '#{sysports}'`
-      if portchres == sysports.to_s
-        Port_check.dir_check
-        Port_check.output
-      else
-        Port_check.error("Gathering and Testing #{node_name} System Ports",
-                         'Program ran into a problem determining if ports are open! Error Code 926')
-      end
+      @portchres = `ufw status numbered | grep -o '#{sysports}'`
+      dragon_gather_system(sysports)
     end
   end
 
-  def dragon_gather_games(node_name)
-    gmports1 = [2000..2021, 2023..3305, 3307..5000]
-    gmports1.each do |gmports|
-      gmportchres = `ufw status numbered | grep -o '#{gmports}'`
-      if gmportchres == gmports.to_s
-        Port_check.dir_check
-        Port_check.output
-      else
-        Port_check.error("Gathering and Testing #{node_name} System Ports",
-                         'Program ran into a problem determining if ports are open! Error Code 927')
-      end
+  def dragon_gather_system(sysports)
+    if @portchres == sysports.to_s
+      Directories.new
+      Directories.setup_check('port')
+      Directories.check
+      PortCheck.output
+    else
+      port_error_handler(1)
     end
   end
+end
 
-  def gemini_gather_system(node_name)
-    sysports1 = [2022, 8080, 30_101, 30_456, 8125]
-    sysports1.each do |sysports|
-      portchres = `ufw status numbered | grep -o '#{sysports}'`
-      if portchres == sysports.to_s
-        Port_check.dir_check
-        Port_check.output
-      else
-        Port_check.error("Gathering and Testing #{node_name} System Ports",
-                         'Program ran into a problem determining if ports are open! Error Code 926')
-      end
-    end
+def setup_dragon_gather_games
+  gmports1 = [2000..2021, 2023..3305, 3307..5000]
+  gmports1.each do |gmports|
+    @gmportchres = `ufw status numbered | grep -o '#{gmports}'`
+    dragon_gather_games(gmports)
   end
+end
 
-  def gemini_gather_games(node_name)
-    gmports1 = [2000..2021, 2023..5000]
-    gmports1.each do |gmports|
-      gmportchres = `ufw status numbered | grep -o '#{gmports}'`
-      if gmportchres == gmports.to_s
-        Port_check.dir_check
-        Port_check.output
-      else
-        Port_check.error("Gathering and Testing #{node_name} System Ports",
-                         'Program ran into a problem determining if ports are open! Error Code 927')
-      end
-    end
+def dragon_gather_games(gmports)
+  if @gmportchres == gmports.to_s
+    Directories.new
+    Directories.setup_check('port')
+    Directories.check
+    PortCheck.output
+  else
+    port_error_handler(2)
   end
+end
 
-  def shuttle_gather_system(node_name)
-    sysports1 = [2022, 8080, 30_101, 30_456, 8125]
-    sysports1.each do |sysports|
-      portchres = `ufw status numbered | grep -o '#{sysports}'`
-      if portchres == sysports.to_s
-        Port_check.dir_check
-        Port_check.output
-      else
-        Port_check.error("Gathering and Testing #{node_name} System Ports",
-                         'Program ran into a problem determining if ports are open! Error Code 926')
-      end
-    end
+def setup_gemini_gather_system
+  sysports1 = [2022, 8080, 30_101, 30_456, 8125]
+  sysports1.each do |sysports|
+    @portchres = `ufw status numbered | grep -o '#{sysports}'`
+    gemini_gather_system(sysports)
   end
+end
 
-  def shuttle_gather_games(node_name)
-    gmports1 = [2000..2021, 2023..5000]
-    gmports1.each do |gmports|
-      gmportchres = `ufw status numbered | grep -o '#{gmports}'`
-      if gmportchres == gmports.to_s
-        Port_check.dir_check
-        Port_check.output
-      else
-        Port_check.error("Gathering and Testing #{node_name} System Ports",
-                         'Program ran into a problem determining if ports are open! Error Code 927')
-      end
-    end
+def gemini_gather_system(sysports)
+  if @portchres == sysports.to_s
+    Directories.new
+    Directories.setup_check('port')
+    Directories.check
+    output_portcheck_results
+  else
+    port_error_handler(1)
+  end
+end
+
+def setup_gemini_gather_games
+  gmports1 = [2000..2021, 2023..5000]
+  gmports1.each do |gmports|
+    @gmportchres = `ufw status numbered | grep -o '#{gmports}'`
+    gemini_gather_games(gmports)
+  end
+end
+
+def gemini_gather_games(gmports)
+  if @gmportchres == gmports.to_s
+    Directories.new
+    Directories.setup_check('port')
+    Directories.check
+    PortCheck.output
+  else
+    port_error_handler(2)
+  end
+end
+
+def setup_shuttle_gather_system
+  sysports1 = [2022, 8080, 30_101, 30_456, 8125]
+  sysports1.each do |sysports|
+    @portchres = `ufw status numbered | grep -o '#{sysports}'`
+    shuttle_gather_system(sysports)
+  end
+end
+
+def shuttle_gather_system(sysports)
+  if @portchres == sysports.to_s
+    Directories.new
+    Directories.setup_check('port')
+    Directories.check
+    PortCheck.output
+  else
+    port_error_handler(1)
+  end
+end
+
+def setup_shuttle_gather_games
+  gmports1 = [2000..2021, 2023..5000]
+  gmports1.each do |gmports|
+    @gmportchres = `ufw status numbered | grep -o '#{gmports}'`
+    shuttle_gather_games(gmports)
+  end
+end
+
+def shuttle_gather_games(gmports)
+  if @gmportchres == gmports.to_s
+    Directories.new
+    Directories.setup_check('port')
+    Directories.check
+    PortCheck.output
+  else
+    PortCheck.error("Gathering and Testing #{@nodenm} System Ports",
+                    'Program ran into a problem determining if ports are open! Error Code 927')
   end
 end
