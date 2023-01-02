@@ -3,12 +3,10 @@
 
 # Method for handling errors
 class Error_handler
-  require_relative './Nginx-check'
-  require_relative './Port-check'
   require_relative './Logman'
 
-  def initialize(method, status)
-    logger"System ran into an issue while #{method}"
-    puts "#{status}"
+  def initialize(severity, message)
+    Logman.log_to_file(severity, message)
+    Logman.log_to_stdout(severity, message)
   end
 end
