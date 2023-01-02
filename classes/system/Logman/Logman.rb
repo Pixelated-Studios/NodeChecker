@@ -5,12 +5,12 @@
 class Logman
   require 'logger'
   def initialize
-    @@megabyte = 1024**2
-    @@one_hundred_megabytes = @@megabyte * 100
+    megabyte = 1024**2
+    @one_hundred_megabytes = megabyte * 100
   end
 
   def setup_log_to_file
-    @logger_file = Logger.new('checker_log.txt', 'daily', @@one_hundred_megabytes)
+    @logger_file = Logger.new('checker_log.txt', 'daily', @one_hundred_megabytes)
     @logger_file.level = Logger::DEBUG
     @logger_file.datetime_format = '%m-%d-%Y %H:%M'
     @logger_file.formatter = proc { |severity, datetime, progname, msg|
