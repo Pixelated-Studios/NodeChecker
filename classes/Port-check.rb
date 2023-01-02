@@ -6,44 +6,33 @@ class Port_check
   require_relative './Nginx-check'
   require_relative './Directory-manager'
   require_relative './Error-handler'
+  require_relative './Machine-check'
   require_relative './Logman'
+  attr_accessor :instdir
 
   def initialize
-    @@instdir = '/etc/Pixelated-Studios/NodeChecker'
-    @@uuid = `cat /etc/uuid`.chomp
-  end
-
-  def machine_check
-    puts 'Detecting Machine!'
-    case @@uuid
-    when 'm95jnv_n5T3bmc8kmSiFSDigFTZ5UWHSkZcpWdnFdtgdkoGEvw7F7CdCK8GnrAD2'; @@nodenm = 'dragon'
-                                                                             puts 'Detected Dragon!'
-    when 'rCGWs2lYYrEVdD6JjaXS12bMxJf_z8KefCcoIQ4wNmRPXpgOn7HcnS_i5WnYW43A'; @@nodenm = 'gemini'
-                                                                             puts 'Detected Gemini!'
-    when 'wDdG98AvHFB7X1fPIUOlSlMQCLZxm3sG62SrQ1O6ZfeOrzcmYMJNBbU15DJM9WQ6'; @@nodenm = 'shuttle'
-                                                                             puts 'Detected Shuttle!'
-    else
-      Error_handler.new('detecting node!', 'Error Code: 303')
-    end
+    @instdir = '/etc/Pixelated-Studios/NodeChecker'
+    MachineChecker.new
   end
 
   def port_error_handler(port_type)
     case port_type
     when 1
-      Error_handler("executing #{$nodenm} System Port Scan!", 'Error Code: 764')
+      Error_handler.new('fatal', "Failure executing #{@nodenm} System Ports Scan!")
     when 2
-      Error_handler("executing #{$nodenm} Games Port Scan!", 'Error Code: 765')
+      Error_handler.new('fatal', "Failure executing #{@nodenm} Games Ports Scan!")
     else
-      Error_handler('parsing an error!', 'Contact Veth/Connor, tell him you got an Error Code 1')
+      Error_handler.new('fatal',
+                        'There was an error parsing an error! Contact Veth/Connor, tell him you got an Error Code 1')
     end
   end
 
   def port_type_dragon(port_type)
     case port_type
     when 1
-      dragon_gather_system($nodenm)
+      dragon_gather_system(@nodenm)
     when 2
-      dragon_gather_games($nodenm)
+      dragon_gather_games(@nodenm)
     else
       port_error_handler(port_type)
     end
@@ -52,9 +41,9 @@ class Port_check
   def port_type_gemini(port_type)
     case port_type
     when 1
-      gemini_gather_system($nodenm)
+      gemini_gather_system(@nodenm)
     when 2
-      gemini_gather_games($nodenm)
+      gemini_gather_games(@nodenm)
     else
       port_error_handler(port_type)
     end
@@ -63,9 +52,9 @@ class Port_check
   def port_type_shuttle(port_type)
     case port_type
     when 1
-      Port_check.shuttle_gather_system($nodenm)
+      Port_check.shuttle_gather_system(@nodenm)
     when 2
-      Port_check.shuttle_gather_games($nodenm)
+      Port_check.shuttle_gather_games(@nodenm)
     else
       port_error_handler(port_type)
     end
@@ -73,7 +62,7 @@ class Port_check
 
   def dir_check
     dirsreal = nil
-    dirsreal = 1 if Dir.exist?($instdir)
+    dirsreal = 1 if Dir.exist?(@instdir)
     # if dirsreal is 1, the install directory exists
     if dirsreal == 1
       # so we run the dir_status with the 1 arg to ensure the dir isn't recreated
@@ -88,7 +77,7 @@ class Port_check
     when 1
       puts 'Working Directory Exists!'
     when 0
-      mkdirs = system(mkdir, $instdir)
+      mkdirs = system(mkdir, @instdir)
       case mkdirs
       when true
         puts 'Working Directory Created!'
@@ -108,7 +97,7 @@ class Port_check
     sysports1 = [2022, 8080, 30_101, 30_456, 8125, 3306]
     sysports1.each do |sysports|
       portchres = `ufw status numbered | grep -o '#{sysports}'`
-      if portchres == "#{sysports}"
+      if portchres == sysports.to_s
         Port_check.dir_check
         Port_check.output
       else
@@ -122,7 +111,7 @@ class Port_check
     gmports1 = [2000..2021, 2023..3305, 3307..5000]
     gmports1.each do |gmports|
       gmportchres = `ufw status numbered | grep -o '#{gmports}'`
-      if gmportchres == "#{gmports}"
+      if gmportchres == gmports.to_s
         Port_check.dir_check
         Port_check.output
       else
@@ -136,7 +125,7 @@ class Port_check
     sysports1 = [2022, 8080, 30_101, 30_456, 8125]
     sysports1.each do |sysports|
       portchres = `ufw status numbered | grep -o '#{sysports}'`
-      if portchres == "#{sysports}"
+      if portchres == sysports.to_s
         Port_check.dir_check
         Port_check.output
       else
@@ -150,7 +139,7 @@ class Port_check
     gmports1 = [2000..2021, 2023..5000]
     gmports1.each do |gmports|
       gmportchres = `ufw status numbered | grep -o '#{gmports}'`
-      if gmportchres == "#{gmports}"
+      if gmportchres == gmports.to_s
         Port_check.dir_check
         Port_check.output
       else
@@ -164,7 +153,7 @@ class Port_check
     sysports1 = [2022, 8080, 30_101, 30_456, 8125]
     sysports1.each do |sysports|
       portchres = `ufw status numbered | grep -o '#{sysports}'`
-      if portchres == "#{sysports}"
+      if portchres == sysports.to_s
         Port_check.dir_check
         Port_check.output
       else
@@ -178,7 +167,7 @@ class Port_check
     gmports1 = [2000..2021, 2023..5000]
     gmports1.each do |gmports|
       gmportchres = `ufw status numbered | grep -o '#{gmports}'`
-      if gmportchres == "#{gmports}"
+      if gmportchres == gmports.to_s
         Port_check.dir_check
         Port_check.output
       else
