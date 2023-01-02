@@ -10,7 +10,7 @@ class Nginxcheck
     if system('systemctl', 'is-active', '--quiet', 'nginx')
       puts 'Nginx Running!'
     else
-      Error_handler.new('fatal', 'Nginx borked!')
+      ErrorHandler.new('fatal', 'Nginx borked!')
     end
   end
 end
