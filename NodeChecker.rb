@@ -1,11 +1,11 @@
 #!/bin/ruby
 # frozen_string_literal: true
 
-require_relative './classes/Nginx-check'
-require_relative './classes/Port-check'
-require_relative './classes/Directory-manager'
-require_relative './classes/Error-handler'
-require_relative './classes/Logman'
+require_relative './tests/Nginx-test'
+require_relative './tests/Port-test'
+require_relative './classes/managers/Directory-manager'
+require_relative './classes/handlers/Error-handler'
+require_relative './classes/system/Logman'
 
 Logman.new
 Logman.setup_log_to_file
