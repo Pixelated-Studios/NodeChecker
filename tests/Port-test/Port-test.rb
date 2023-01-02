@@ -3,11 +3,11 @@
 
 # class for checking ports
 class Port_check
-  require_relative './Nginx-check'
-  require_relative './Directory-manager'
-  require_relative './Error-handler'
-  require_relative './Machine-check'
-  require_relative './Logman'
+  require_relative '../Nginx-test'
+  require_relative '../../classes/managers/Directory-manager'
+  require_relative '../../classes/handlers/Error-handler'
+  require_relative '../../classes/system/util/Machine-UUID-check'
+  require_relative '../../classes/system/Logman/Logman'
   attr_accessor :instdir
 
   def initialize
@@ -60,37 +60,8 @@ class Port_check
     end
   end
 
-  def dir_check
-    dirsreal = nil
-    dirsreal = 1 if Dir.exist?(@instdir)
-    # if dirsreal is 1, the install directory exists
-    if dirsreal == 1
-      # so we run the dir_status with the 1 arg to ensure the dir isn't recreated
-      dir_status(1)
-      # if dirsreal doesn't equal 1, run dir_status with the 0 arg to create the working directory
-    elsif dirsreal != 1 then dir_status(0)
-    end
-  end
-
-  def dir_status(status)
-    case status
-    when 1
-      puts 'Working Directory Exists!'
-    when 0
-      mkdirs = system(mkdir, @instdir)
-      case mkdirs
-      when true
-        puts 'Working Directory Created!'
-      when false
-        Error_handler.new('while creating the working directory', 'Error Code: 662')
-      when nil
-        Error_handler.new('while creating the working directory', 'Error Code: 662')
-      else
-        Error_handler.new('while creating the working directory', 'Error Code: 662')
-      end
-    else
-      Error_handler.new('Checking if the Working Directory exists', 'Error Code: 591')
-    end
+  def output
+    p 'outputting'
   end
 
   def dragon_gather_system(node_name)
