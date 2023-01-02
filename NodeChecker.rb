@@ -3,9 +3,9 @@
 
 require_relative './classes/Nginx-check'
 require_relative './classes/Port-check'
+require_relative './classes/Directory-manager'
 require_relative './classes/Error-handler'
 require_relative './classes/Logman'
-require_relative './Gemfile'
 
 Logman.new
 Logman.setup_log_to_file
@@ -13,26 +13,17 @@ Logman.setup_log_to_stdout
 
 two_lines = RubyFiglet::Figlet.new("Pixelated\nNodeCheck")
 two_lines.show
-Logman.log_to_file('info', 'Displayed Greeting')
+Error_handler.new('info', 'Displayed Greeting')
 sleep(2)
 
 puts 'Checking NGINX status'
 Nginxcheck.new
-if ($nginxstatus = 0)
-  puts 'Checking Ports!'
-  sleep(1)
-  Port_check.new
-else
-  puts 'Previous test failed, Skipping!'
-  sleep(1)
-end
 
 puts 'Would you like to test ports for this node? (Y/N)'
 resp1 = gets.chomp
 case resp1.downcase
 when 'Y'
   Port_check.new
-  Port_check.machine_check
   puts 'Do you want to test Games or Systems ports? (G/S)'
   resp2 = gets.chomp
   case resp2.downcase
@@ -45,7 +36,7 @@ when 'Y'
     when 'shuttle'
       Port_check.port_type_shuttle(1)
     else
-      Error_handler.new('Running the Systems Port Check', 'Error Code: 287')
+      Error_handler.new('fatal', 'Ran into issue running the Systems Port Check')
     end
   when 'G'
     case $nodenm
@@ -56,16 +47,13 @@ when 'Y'
     when 'shuttle'
       Port_check.port_type_shuttle(2)
     else
-      Error_handler.new('Running the Games Port Check', 'Error Code: 287')
+      Error_handler.new('fatal', 'Failure running the Games Port Check')
     end
   else
-    Error_handler.new('running the Port Check', 'Error Code: 287')
+    Error_handler.new('fatal', 'Failure running the Port Check!')
   end
 when 'N'
   puts 'Skipping!'
 else
-  Error_handler.new('understanding your response!', 'Please contact Veth/Connor!')
+  Error_handler.new('fatal', 'Critical Failure interpreting user input! Please contact Veth/Connor!')
 end
-
-
-
