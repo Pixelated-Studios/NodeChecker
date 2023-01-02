@@ -1,14 +1,15 @@
 #!/bin/Ruby
 # frozen_string_literal: true
 
+# Class for checking what Node the system is running on
 class MachineChecker
   require_relative '../../handlers/Error-handler'
   require_relative '../../system/Logman/Logman'
   attr_accessor :nodenm
 
   def initialize
-    @uuid = `cat /etc/uuid`.chomp
-    check(@uuid)
+    uuid = `cat /etc/uuid`.chomp
+    check(uuid)
   end
 
   def check(uuid)
@@ -20,7 +21,7 @@ class MachineChecker
     when 'wDdG98AvHFB7X1fPIUOlSlMQCLZxm3sG62SrQ1O6ZfeOrzcmYMJNBbU15DJM9WQ6'; @nodenm = 'shuttle'
                                                                              puts 'Detected Shuttle!'
     else
-      Error_handler.new('fatal', 'Ran into issue Detecting Machine!')
+      ErrorHandler.new('fatal', 'Ran into issue Detecting Machine!')
     end
   end
 end
