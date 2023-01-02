@@ -7,7 +7,7 @@ class Directories
   require_relative '../../tests/Nginx-test'
   require_relative '../handlers/Error-handler'
   require_relative '../system/Logman/Logman'
-  attr_accessor :install_dir, :type
+  attr_accessor :install_dir, :port_dir, :nginx_dir, :dirsreal, :type
 
   def initialize
     @install_dir = '/etc/Pixelated-Studios/NodeChecker'

@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Bring Workspace files for RubyMine UTD">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Make the Port Checker use the directory manager properly">
+      <change beforePath="$PROJECT_DIR$/classes/managers/Directory-manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/managers/Directory-manager.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +21,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -128,7 +129,7 @@
     </configuration>
     <configuration default="true" type="RackRunConfigurationType" factoryName="Rack">
       <RACK_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
-      <RACK_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RACK_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
       <RACK_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
       <RACK_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
       <RACK_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
@@ -236,6 +237,7 @@
       <workItem from="1672611193376" duration="8244000" />
       <workItem from="1672686834334" duration="1848000" />
       <workItem from="1672688690313" duration="180000" />
+      <workItem from="1672688872177" duration="8534000" />
     </task>
     <task id="LOCAL-00001" summary="remove old checker file">
       <created>1672619974818</created>
@@ -356,7 +358,70 @@
       <option name="project" value="LOCAL" />
       <updated>1672688583749</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Bring Workspace files for RubyMine UTD">
+      <created>1672692571722</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1672692571722</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Rename from Port_check to PortCheck&#10;Refactor @instdir to @install_dir for brevity&#10;Refactor Error_handler to ErrorHandler for brevity&#10;Change the way we call the gather of system and games ports to make methods smaller and more concise&#10;Add the rough in method for outputting the PortCheck test results to a file&#10;Created setup_gather system to separate the setup for port gathering rather than having it happen inside the checking method&#10;Change the port checker to use ErrorHandler/Logman instead of the logger method I built inside the checker&#10;Removed the bulk of the old portchecker error handler aside from the logic to send different errors to the error handler in the event of an error firing in the Portchecker&#10;&#10;Did a lot of syntaxical changes to DRY up  the code">
+      <created>1672693412434</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1672693412434</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Refactor Port_check to PortCheck to obey CamelCase&#10;Refactor Error_handler to ErrorHandler to obey CamelCase">
+      <created>1672693467341</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1672693467341</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Refactor Error_handler to ErrorHandler to obey CamelCase">
+      <created>1672693484887</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1672693484887</updated>
+    </task>
+    <task id="LOCAL-00022" summary="change uuid to @uuid&#10;Refactor Error_handler to ErrorHandler to obey CamelCase">
+      <created>1672693586542</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1672693586542</updated>
+    </task>
+    <task id="LOCAL-00023" summary="change class variables to instance Variables as they aren't needed once an instance closes so keeping them loaded into the class is redundant">
+      <created>1672693641116</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1672693641116</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Refactor Error_handler to ErrorHandler to obey CamelCase">
+      <created>1672693671979</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1672693671979</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Change init method to instead just set instance variables instead of running functional code&#10;Moved functional code from init method to setup_check method that now contains the logic for determining what directory the manager needs to be working with&#10;remove redundant class variables and replace them with instance variables&#10;Rebase error_handler to ErrorHandler to obey CamelCase&#10;Finish setting up the make dirs method">
+      <created>1672695552209</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1672695552209</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Make the Port Checker use the directory manager properly">
+      <created>1672696940060</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1672696940060</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,6 +446,13 @@
     <MESSAGE value="Moved  Error-handler to new directory structure that makes more sense&#10;&#10;Fix broken imports because RubyMine won't refactor properly" />
     <MESSAGE value="Moved  Directory-manager to new directory structure that makes more sense&#10;&#10;Fix broken imports because RubyMine won't refactor properly" />
     <MESSAGE value="Bring Workspace files for RubyMine UTD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bring Workspace files for RubyMine UTD" />
+    <MESSAGE value="Rename from Port_check to PortCheck&#10;Refactor @instdir to @install_dir for brevity&#10;Refactor Error_handler to ErrorHandler for brevity&#10;Change the way we call the gather of system and games ports to make methods smaller and more concise&#10;Add the rough in method for outputting the PortCheck test results to a file&#10;Created setup_gather system to separate the setup for port gathering rather than having it happen inside the checking method&#10;Change the port checker to use ErrorHandler/Logman instead of the logger method I built inside the checker&#10;Removed the bulk of the old portchecker error handler aside from the logic to send different errors to the error handler in the event of an error firing in the Portchecker&#10;&#10;Did a lot of syntaxical changes to DRY up  the code" />
+    <MESSAGE value="Refactor Port_check to PortCheck to obey CamelCase&#10;Refactor Error_handler to ErrorHandler to obey CamelCase" />
+    <MESSAGE value="change uuid to @uuid&#10;Refactor Error_handler to ErrorHandler to obey CamelCase" />
+    <MESSAGE value="change class variables to instance Variables as they aren't needed once an instance closes so keeping them loaded into the class is redundant" />
+    <MESSAGE value="Refactor Error_handler to ErrorHandler to obey CamelCase" />
+    <MESSAGE value="Change init method to instead just set instance variables instead of running functional code&#10;Moved functional code from init method to setup_check method that now contains the logic for determining what directory the manager needs to be working with&#10;remove redundant class variables and replace them with instance variables&#10;Rebase error_handler to ErrorHandler to obey CamelCase&#10;Finish setting up the make dirs method" />
+    <MESSAGE value="Make the Port Checker use the directory manager properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make the Port Checker use the directory manager properly" />
   </component>
 </project>
