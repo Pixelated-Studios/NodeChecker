@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Make Port-check use Logman and DRY up the code a bit">
-      <change afterPath="$PROJECT_DIR$/.idea/NodeChecker.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeChecker.rb" beforeDir="false" afterPath="$PROJECT_DIR$/NodeChecker.rb" afterDir="false" />
+    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Fix broken imports because RubyMine won't refactor properly">
       <change beforePath="$PROJECT_DIR$/classes/Directory-manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/managers/Directory-manager.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Error-handler.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/handlers/Error-handler.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Logman.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/system/Logman/Logman.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Machine-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/system/util/Machine-UUID-check.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Nginx-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Nginx-test/Nginx-test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Port-check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Port-test/Port-test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +238,7 @@
       <workItem from="1672596146406" duration="602000" />
       <workItem from="1672596859582" duration="52000" />
       <workItem from="1672611193376" duration="8244000" />
-      <workItem from="1672686834334" duration="1276000" />
+      <workItem from="1672686834334" duration="1593000" />
     </task>
     <task id="LOCAL-00001" summary="remove old checker file">
       <created>1672619974818</created>
@@ -301,7 +296,28 @@
       <option name="project" value="LOCAL" />
       <updated>1672620151958</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update workspace files to have correct dictionary for my shorthand when using RubyMine">
+      <created>1672688304270</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1672688304270</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Rebase Port-check for more organize directory structure&#10;&#10;Rename Port-check to Port-test&#10;&#10;Fix broken imports because RubyMine won't rebase properly">
+      <created>1672688362980</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1672688362980</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix broken imports because RubyMine won't refactor properly">
+      <created>1672688393215</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672688393215</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +333,9 @@
     <MESSAGE value="Make the Nginx-checker use Logman" />
     <MESSAGE value="Make NodeChecker use Logman" />
     <MESSAGE value="Make Port-check use Logman and DRY up the code a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make Port-check use Logman and DRY up the code a bit" />
+    <MESSAGE value="Update workspace files to have correct dictionary for my shorthand when using RubyMine" />
+    <MESSAGE value="Rebase Port-check for more organize directory structure&#10;&#10;Rename Port-check to Port-test&#10;&#10;Fix broken imports because RubyMine won't rebase properly" />
+    <MESSAGE value="Fix broken imports because RubyMine won't refactor properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix broken imports because RubyMine won't refactor properly" />
   </component>
 </project>
