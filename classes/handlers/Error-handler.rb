@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # Method for handling errors
-class Error_handler
+class ErrorHandler
   require_relative '../system/Logman'
 
   def initialize(severity, message)
