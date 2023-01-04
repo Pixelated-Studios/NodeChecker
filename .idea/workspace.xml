@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Make the Port Checker use the directory manager properly">
-      <change beforePath="$PROJECT_DIR$/classes/managers/Directory-manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/classes/managers/Directory-manager.rb" afterDir="false" />
+    <list default="true" id="23a0a366-56ab-4966-9e7c-ad49a508bde9" name="Changes" comment="Add comments throughout in prep for unfinished OSP release">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +237,8 @@
       <workItem from="1672611193376" duration="8244000" />
       <workItem from="1672686834334" duration="1848000" />
       <workItem from="1672688690313" duration="180000" />
-      <workItem from="1672688872177" duration="8534000" />
+      <workItem from="1672688872177" duration="13606000" />
+      <workItem from="1672702891250" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="remove old checker file">
       <created>1672619974818</created>
@@ -421,7 +422,28 @@
       <option name="project" value="LOCAL" />
       <updated>1672696940060</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Bring repo UTD">
+      <created>1672697437081</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1672697437081</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Finish building the Port Check output method. It outputs to STDOUT, the Logman file, and to it's own log file">
+      <created>1672698312620</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1672698312620</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Add comments throughout in prep for unfinished OSP release">
+      <created>1672702466787</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1672702466787</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,8 +451,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove old checker file" />
-    <MESSAGE value="remove old errorhandler file" />
     <MESSAGE value="add workspace files" />
     <MESSAGE value="put machine UUID checker into it's own class" />
     <MESSAGE value="Make the Error-handler use Logman instead of printing to console manually" />
@@ -453,6 +473,9 @@
     <MESSAGE value="Refactor Error_handler to ErrorHandler to obey CamelCase" />
     <MESSAGE value="Change init method to instead just set instance variables instead of running functional code&#10;Moved functional code from init method to setup_check method that now contains the logic for determining what directory the manager needs to be working with&#10;remove redundant class variables and replace them with instance variables&#10;Rebase error_handler to ErrorHandler to obey CamelCase&#10;Finish setting up the make dirs method" />
     <MESSAGE value="Make the Port Checker use the directory manager properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make the Port Checker use the directory manager properly" />
+    <MESSAGE value="Bring repo UTD" />
+    <MESSAGE value="Finish building the Port Check output method. It outputs to STDOUT, the Logman file, and to it's own log file" />
+    <MESSAGE value="Add comments throughout in prep for unfinished OSP release" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add comments throughout in prep for unfinished OSP release" />
   </component>
 </project>
